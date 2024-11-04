@@ -52,6 +52,9 @@ public class Movie {
         else
             this.rating = rating;
     }
+    public static int movieCount(){
+        return movieCounter;
+    }
     public static void printAllMovies() {
         for (Movie movie : movies) {
             System.out.println(movie.toString());
