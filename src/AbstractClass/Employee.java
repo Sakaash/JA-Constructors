@@ -16,8 +16,8 @@ public abstract class Employee {
     }
 
     public String getEmployeeDetails() {
-        StringBuilder sb = new StringBuilder(id +"\t"+ name +"\t"+ age);
-        sb.append("\t"+salary);
+        StringBuilder sb = new StringBuilder(id +"\n"+ name +"\n"+ age);
+        sb.append("\n"+salary);
         return sb.toString();
     }
     public abstract double calculatePay();
@@ -25,8 +25,11 @@ public abstract class Employee {
 }
 
 class HourlyEmployee extends Employee{
-    private int hoursWorked;
+    private int hoursWorked = 8;
 
+    HourlyEmployee(int id, String name,byte age, double salary) {
+        super(id, name, age, salary);
+    }
     HourlyEmployee(int id, String name,byte age, double salary, int hoursWorked) {
         super(id, name, age, salary);
         this.hoursWorked = hoursWorked;
@@ -57,38 +60,38 @@ class SalariedEmployee extends Employee {
 class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the Hourly Employee Details");
-        System.out.print("Enter the name : ");
-        String name = scanner.nextLine();
-        System.out.print("Enter the id : ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
-        System.out.print("Enter the age : ");
-        byte age = scanner.nextByte();
-        scanner.nextLine();
-        System.out.print("Enter the salary : ");
-        double salary = scanner.nextDouble();
-        scanner.nextLine();
-        System.out.println();
-        System.out.println("Enter the Salaried Employee Details");
-        System.out.print("Enter the name : ");
-        String name2 = scanner.nextLine();
-        System.out.print("Enter the id : ");
-        int id2 = scanner.nextInt();
-        scanner.nextLine();
-        System.out.print("Enter the age : ");
-        byte age2 = scanner.nextByte();
-        scanner.nextLine();
-        System.out.print("Enter the salary : ");
-        double salary2 = scanner.nextDouble();
-        scanner.nextLine();
-        scanner.close();
-        Employee hourlyEmployee = new HourlyEmployee(id, name, age, salary, 8);
-        Employee salariedEmployee = new SalariedEmployee(id2, name2, age2, salary2);
+        
+        Employee hourlyEmployee = getHourlyEmployeeDetails(scanner);
+        Employee salariedEmployee = getSalariedEmployeeDetails(scanner);
+
         System.out.println();
         System.out.println(hourlyEmployee.getEmployeeDetails());
         System.out.println(hourlyEmployee.calculatePay());
         System.out.println(salariedEmployee.getEmployeeDetails());
         System.out.println(salariedEmployee.calculatePay());
+    }
+    
+    private static HourlyEmployee getHourlyEmployeeDetails(Scanner scanner) {
+        System.out.println("Enter the hourly employee details : ");
+        String name = getInput("Enter the name : ", scanner);
+        int id = Integer.parseInt(getInput("Enter the id : ", scanner));
+        byte age = Byte.parseByte(getInput("Enter the age of the employee : ", scanner));
+        double salary = Double.parseDouble(getInput("Enter the salary of the employee : ", scanner));
+        int hoursWorked = Integer.parseInt(getInput("Enter the hours worked by the employee : ", scanner));
+        return new HourlyEmployee(id, name, age, salary, hoursWorked);
+    }
+    
+    private static SalariedEmployee getSalariedEmployeeDetails(Scanner scanner) {
+        System.out.println("Enter the salaried employee details : ");
+        String name = getInput("Enter the name : ", scanner);
+        int id = Integer.parseInt(getInput("Enter the id : ", scanner));
+        byte age = Byte.parseByte(getInput("Enter the age of the employee : ", scanner));
+        double salary = Double.parseDouble(getInput("Enter the salary of the employee : ", scanner));
+        return new SalariedEmployee(id, name, age, salary);
+    }    
+
+    private static String getInput(String prompt, Scanner scanner) {
+        System.out.println(prompt);
+        return scanner.nextLine().trim();
     }
 }
