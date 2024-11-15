@@ -3,10 +3,10 @@ package MethodOverriding;
 public class Employee {
     int id;
     String name;
-    int age;
+    byte age;
     double salary;
 
-    Employee(int id, String name,int age, double salary) {
+    Employee(int id, String name,byte age, double salary) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -21,7 +21,7 @@ public class Employee {
 }
 
 class HourlyEmployee extends Employee{
-    HourlyEmployee(int id, String name,int age, double salary) {
+    HourlyEmployee(int id, String name,byte age, double salary) {
         super(id, name, age, salary);
     }
     public String getEmployeeDetails() {
@@ -30,7 +30,7 @@ class HourlyEmployee extends Employee{
 }
 
 class SalariedEmployee extends Employee {
-    SalariedEmployee(int id, String name,int age, double salary) {
+    SalariedEmployee(int id, String name,byte age, double salary) {
         super(id, name, age, salary);
     }
     public String getEmployeeDetails() {
@@ -40,8 +40,8 @@ class SalariedEmployee extends Employee {
 
 class Main {
     public static void main(String[] args) {
-        Employee hourlyEmployee = new HourlyEmployee(100, "John", 42, 500);
-        Employee salariedEmployee = new SalariedEmployee(105, "Max", 27, 8);
+        Employee hourlyEmployee = new HourlyEmployee(100, "John", (byte)42, 500);
+        Employee salariedEmployee = new SalariedEmployee(105, "Max", (byte)27, 8);
         System.out.println(hourlyEmployee.getEmployeeDetails());
         System.out.println(salariedEmployee.getEmployeeDetails());
     }
