@@ -67,6 +67,7 @@ class Main {
         System.out.println();
         System.out.println(hourlyEmployee.getEmployeeDetails());
         System.out.println(hourlyEmployee.calculatePay());
+        System.out.println();
         System.out.println(salariedEmployee.getEmployeeDetails());
         System.out.println(salariedEmployee.calculatePay());
     }
